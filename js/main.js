@@ -12,7 +12,8 @@ const elements = {
     input: document.getElementById('dni-input'),
     resultContainer: document.querySelector('[aria-live="polite"]'),
     resultText: document.getElementById('dni-result'),
-    button: document.querySelector('button[type="submit"]')
+    button: document.querySelector('button[type="submit"]'),
+    themeToggle: document.getElementById('toggle-theme')
 };
 
 /**
@@ -47,11 +48,14 @@ function mostrarResultado(mensaje, esError = false) {
     
     if (esError) {
         elements.resultText.classList.remove('text-primary');
+        elements.resultText.classList.remove('text-secondary');
         elements.resultText.classList.add('text-red-600');
         elements.resultContainer.setAttribute('aria-label', 'Error en la validación');
     } else {
         elements.resultText.classList.remove('text-red-600');
+        elements.resultText.classList.remove('text-secondary');
         elements.resultText.classList.add('text-primary');
+        elements.resultText.classList.add('dark:text-secondary');
         elements.resultContainer.setAttribute('aria-label', 'DNI completo válido');
     }
 }
@@ -103,4 +107,35 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Enfocamos el input al cargar la página
     elements.input.focus();
+    
+    // Funcionalidad de cambio de tema
+    setupThemeToggle();
 });
+
+/**
+ * Inicializa y maneja la funcionalidad del botón de cambio de tema
+ */
+function setupThemeToggle() {
+    // Comprobamos si hay una preferencia guardada
+    const currentTheme = localStorage.getItem('theme');
+    
+    // Si hay una preferencia guardada o el usuario prefiere el modo oscuro, aplicamos el tema oscuro
+    if (currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+    
+    // Añadimos el manejador de eventos para el botón de cambio de tema
+    elements.themeToggle.addEventListener('click', () => {
+        // Alternamos la clase 'dark' en el elemento HTML
+        document.documentElement.classList.toggle('dark');
+        
+        // Guardamos la preferencia en localStorage
+        if (document.documentElement.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}

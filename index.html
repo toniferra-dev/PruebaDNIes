@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="transition-colors duration-200">
 <head>
     <!-- Metadatos básicos -->
     <meta charset="UTF-8">
@@ -45,13 +45,22 @@
     <!-- Script para personalizar Tailwind -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#0056b3',
-                            dark: '#003d82',
+                            DEFAULT: '#1A5F7A', // Azul primario
+                            dark: '#164D63',    // Versión más oscura para hover
                         },
+                        secondary: {
+                            DEFAULT: '#57C5B6', // Verde complementario
+                            dark: '#44A89A',    // Versión más oscura para hover
+                        },
+                        neutral: {
+                            DEFAULT: '#F9F5EB', // Beige cálido
+                            dark: '#EAE0C9',    // Versión más oscura para contraste
+                        }
                     },
                     fontFamily: {
                         sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
@@ -61,33 +70,44 @@
         }
     </script>
 </head>
-<body class="min-h-screen bg-gray-50 text-gray-800 font-sans">
+<body class="min-h-screen bg-neutral dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-200">
     <!-- Cabecera de la página -->
-    <header class="bg-primary text-white shadow-md">
-        <div class="container mx-auto px-4 py-4">
+    <header class="bg-primary text-white shadow-md relative">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="/" class="flex items-center no-underline text-white">
                 <img class="h-10 mr-3" src="img/logo.svg" alt="Logo CompletDNI">
                 <h1 class="text-2xl font-bold m-0">CompletDNI</h1>
             </a>
+            <!-- Botón de cambio de tema -->
+            <button id="toggle-theme" class="p-2 rounded-full bg-secondary/20 hover:bg-secondary/30 focus:outline-none focus:ring-2 focus:ring-secondary transition" aria-label="Cambiar tema claro/oscuro">
+                <!-- Icono de sol (modo claro) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <!-- Icono de luna (modo oscuro) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
         </div>
     </header>
 
     <!-- Contenido principal -->
     <main class="py-8">
         <div class="container mx-auto px-4">
-            <section class="bg-white rounded-lg shadow-sm p-6 max-w-2xl mx-auto" aria-labelledby="validator-title">
+            <section class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 max-w-2xl mx-auto border border-secondary/20 dark:border-secondary/10 transition-colors duration-200" aria-labelledby="validator-title">
                 <!-- Título de la sección -->
-                <h2 id="validator-title" class="text-xl font-bold text-primary text-center mb-6">Validador de DNI español</h2>
+                <h2 id="validator-title" class="text-xl font-bold text-primary dark:text-secondary text-center mb-6">Validador de DNI español</h2>
                 
                 <!-- Formulario para el DNI -->
                 <form class="mb-6" aria-describedby="dni-instructions">
                     <div class="mb-4 sm:flex sm:items-end sm:gap-4">
                         <div class="flex-grow mb-4 sm:mb-0">
-                            <label for="dni-input" class="block font-semibold mb-2">Introduce tu número de DNI:</label>
+                            <label for="dni-input" class="block font-semibold mb-2 dark:text-white">Introduce tu número de DNI:</label>
                             <input 
                                 type="text" 
                                 id="dni-input" 
-                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition" 
+                                class="w-full px-4 py-2 border border-secondary/30 dark:border-secondary/50 rounded focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary bg-white dark:bg-gray-600 text-gray-800 dark:text-white transition-colors duration-200" 
                                 placeholder="Ej. 12345678" 
                                 maxlength="8" 
                                 pattern="[0-9]{1,8}"
@@ -98,7 +118,7 @@
                         </div>
                         <button 
                             type="submit" 
-                            class="w-full sm:w-auto px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded transition-colors duration-200 font-medium"
+                            class="w-full sm:w-auto px-6 py-2 bg-primary hover:bg-primary-dark dark:bg-secondary dark:hover:bg-secondary-dark text-white rounded transition-colors duration-200 font-medium"
                             aria-label="Validar DNI">
                             Validar
                         </button>
@@ -106,13 +126,13 @@
                     
                     <!-- Resultado de la validación -->
                     <div class="text-center min-h-[50px] mt-6" aria-live="polite">
-                        <p id="dni-result" class="text-xl font-bold text-primary"></p>
+                        <p id="dni-result" class="text-xl font-bold text-primary dark:text-secondary"></p>
                     </div>
                 </form>
                 
                 <!-- Información adicional -->
-                <div class="mt-6 pt-6 border-t border-gray-200">
-                    <p id="dni-instructions" class="text-sm text-gray-600 text-center">
+                <div class="mt-6 pt-6 border-t border-neutral-dark dark:border-gray-600">
+                    <p id="dni-instructions" class="text-sm text-gray-600 dark:text-gray-300 text-center">
                         Introduce los números de tu DNI y te calcularemos automáticamente la letra correspondiente 
                         o verificaremos si el DNI completo es válido.
                     </p>
@@ -122,7 +142,7 @@
     </main>
 
     <!-- Pie de página -->
-    <footer class="bg-primary text-white py-4 mt-8">
+    <footer class="bg-primary dark:bg-gray-900 text-white py-4 mt-8 transition-colors duration-200">
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm">&copy; 2025 CompletDNI. Todos los derechos reservados.</p>
         </div>
