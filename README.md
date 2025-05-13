@@ -1,29 +1,22 @@
-# CompletDNI - Validador de DNI e## Integración de Tailwind CSS y Modern Normalize
+# CompletDNI - Validador de DNI español
 
-Este proyecto utiliza una combinación de Tailwind CSS y Modern Normalize para garantizar un diseño moderno y una compatibilidad óptima:
-
-- **Modern Normalize**: Proporciona una base sólida y consistente para los estilos en todos los navegadores, incluidos los más antiguos. Se incluye a través de CDN para simplificar el desarrollo.
-
-- **Tailwind CSS**: Framework de utilidades que se incluye vía CDN para simplificar el desarrollo y la distribución. Las ventajas de usar Tailwind CSS incluyen:
-  - **Desarrollo más rápido**: Clases de utilidad que permiten construir diseños directamente en el HTML
-  - **Bundle size reducido**: Al usar CDN en producción, solo se carga lo necesario
-  - **Personalización**: Configuración de colores, tipografía y otros aspectos del diseño
-  - **Responsive design**: Clases adaptativas para diferentes tamaños de pantallaUna aplicación web moderna que calcula automáticamente la letra del DNI español o verifica si un DNI completo es válido.
+Una aplicación web moderna que calcula automáticamente la letra del DNI español o verifica si un DNI completo es válido.
 
 ## Características
 
 - ✅ Cálculo automático de la letra del DNI
 - ✅ Validación de formato y coherencia del DNI
-- ✅ Diseño responsive y moderno con Tailwind CSS
+- ✅ Diseño responsive y moderno con CSS personalizado
+- ✅ Modo oscuro/claro con detección automática de preferencias del usuario
 - ✅ Interfaz accesible con soporte para lectores de pantalla
 - ✅ Funcionalidad optimizada para una experiencia de usuario fluida
 
 ## Tecnologías utilizadas
 
 - **HTML5**: Estructura semántica y accesible
-- **Tailwind CSS**: Framework de utilidades CSS para un diseño rápido y consistente
+- **CSS3**: Estilos personalizados y modernos con variables CSS
 - **Modern Normalize**: Normalización CSS moderna para compatibilidad con navegadores antiguos
-- **JavaScript**: Validación y cálculo de letras del DNI
+- **JavaScript**: Validación, cálculo de letras del DNI y gestión del tema oscuro/claro
 - **Enfoque en accesibilidad**: Atributos ARIA, navegación con teclado y contrastes adecuados
 
 ## Estructura del proyecto
@@ -31,22 +24,22 @@ Este proyecto utiliza una combinación de Tailwind CSS y Modern Normalize para g
 ```
 ├── index.html          # Documento HTML principal
 ├── js/
-│   └── main.js         # Lógica JavaScript para el validador
+│   └── main.js         # Lógica JavaScript para el validador y tema
 ├── css/
 │   ├── reset.css       # Estilos de reseteo (complementario)
-│   └── style.css       # Estilos personalizados (complementario)
+│   └── style.css       # Estilos personalizados con soporte de tema oscuro
 ├── package.json        # Configuración de dependencias
 └── node_modules/       # Dependencias instaladas (modern-normalize)
 ```
 
-## Integración de Tailwind CSS y Modern Normalize
+## Sistema de temas claro/oscuro
 
-Este proyecto utiliza Tailwind CSS a través de CDN para simplificar el desarrollo y la distribución. Las ventajas de usar Tailwind CSS incluyen:
+El proyecto incluye un sistema de cambio de tema con las siguientes características:
 
-- **Desarrollo más rápido**: Clases de utilidad que permiten construir diseños directamente en el HTML
-- **Bundle size reducido**: Al usar CDN en producción, solo se carga lo necesario
-- **Personalización**: Configuración de colores, tipografía y otros aspectos del diseño
-- **Responsive design**: Clases adaptativas para diferentes tamaños de pantalla
+- **Detección automática de preferencias**: Detecta las preferencias del sistema del usuario
+- **Toggle manual**: Permite cambiar manualmente entre tema claro y oscuro
+- **Persistencia**: Guarda la selección del usuario en localStorage
+- **Variables CSS**: Utiliza variables CSS para facilitar la implementación del tema
 
 ## Uso
 
@@ -54,13 +47,23 @@ Este proyecto utiliza Tailwind CSS a través de CDN para simplificar el desarrol
 2. Introduce tu número de DNI (sin la letra)
 3. Haz clic en "Validar" o presiona Enter
 4. El sistema mostrará automáticamente tu DNI completo con la letra calculada
+5. Puedes cambiar entre tema claro y oscuro con el botón en la esquina superior derecha
 
-## Mejoras futuras
+## Características de la interfaz
 
-- [ ] Añadir validación para NIE (Número de Identidad de Extranjero)
-- [ ] Implementar almacenamiento local para guardar consultas recientes
-- [ ] Crear modo oscuro utilizando las capacidades de Tailwind
-- [ ] Añadir animaciones suaves para mejorar la experiencia de usuario
+- **Destacado visual de la letra**: La letra del DNI tiene un tamaño mayor para destacar visualmente
+- **Tema oscuro/claro**: Cambia entre temas con un clic en el botón dedicado
+- **Diseño responsive**: Se adapta a todos los tamaños de pantalla
+- **Transiciones suaves**: Transiciones fluidas al cambiar entre temas
+
+## Mejoras realizadas
+
+- [x] Refactorización del código HTML para mejorar la estructura semántica
+- [x] Implementación de CSS personalizado con variables para mayor mantenibilidad
+- [x] Creación de sistema de tema oscuro con detección automática de preferencias
+- [x] Optimización de dependencias del proyecto
+- [x] Destacado visual de la letra del DNI
+- [x] Mejoras de accesibilidad (atributos ARIA, etiquetas semánticas)
 
 ## Licencia
 
