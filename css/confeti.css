@@ -1,0 +1,43 @@
+/* Animación de confeti */
+.confeti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.confeti {
+    position: absolute;
+    top: -10px;
+    animation: confeti-fall 3s ease-in-out forwards;
+}
+
+@keyframes confeti-fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg) scale(0.7);
+    }
+    10% {
+        transform: translateY(10%) rotate(45deg) scale(1);
+    }
+    35% {
+        transform: translateY(40%) rotate(90deg) scale(0.9);
+    }
+    65% {
+        transform: translateY(70%) rotate(135deg) scale(1);
+    }
+    100% {
+        transform: translateY(100vh) rotate(180deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Accesibilidad - desactivar confeti si el usuario prefiere reducir el movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .confeti-container {
+        display: none;
+    }
+}

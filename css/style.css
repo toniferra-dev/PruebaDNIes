@@ -221,6 +221,65 @@ body {
     box-shadow: 0 0 0 2px rgba(87, 197, 182, 0.2);
 }
 
+/* Estilo para errores de validación */
+.dni-validator__input--error {
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2) !important;
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Animación de shake para errores */
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+    40%, 60% { transform: translate3d(3px, 0, 0); }
+}
+
+/* Estilo para el contador de caracteres */
+.dni-validator__counter {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+    transition: color 0.2s;
+}
+
+.dni-validator__counter--complete {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+/* Estilo para el mensaje de estado */
+.dni-validator__status {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    color: #666;
+    min-height: 1.2em;
+    transition: color 0.2s;
+}
+
+.dni-validator__status--error {
+    color: #e53e3e;
+}
+
+.dni-validator__status--warning {
+    color: #d97706;
+}
+
+.dni-validator__status--success {
+    color: #059669;
+}
+
+.dark .dni-validator__counter {
+    color: #aaa;
+}
+
+.dark .dni-validator__counter--complete {
+    color: var(--color-secondary);
+}
+
 .dark .dni-validator__input {
     border-color: rgba(87, 197, 182, 0.5);
 }
@@ -270,6 +329,27 @@ body {
     min-height: 60px;
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animación de resplandor para el contenedor de resultados */
+@keyframes result-container-glow {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(87, 197, 182, 0.25);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+/* Esta clase se añade con JavaScript cuando hay un resultado válido */
+.dni-validator__result--success {
+    animation: result-container-glow 3s ease-in-out infinite;
 }
 
 .dni-validator__result-text {
@@ -293,10 +373,45 @@ body {
     color: var(--color-secondary);
 }
 
+/* Animación para la letra del DNI */
+@keyframes letra-appearance {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.2) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Animación de brillo para la letra del DNI */
+@keyframes letra-glow {
+    0% {
+        text-shadow: 0 0 5px rgba(87, 197, 182, 0);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(87, 197, 182, 0.5),
+                     0 0 15px rgba(87, 197, 182, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(87, 197, 182, 0);
+    }
+}
+
 .dni-validator__result-letra {
     color: var(--color-primary);
     font-size: 3rem;
     margin-left: 0.25rem;
+    animation: 
+        letra-appearance 0.6s cubic-bezier(0.17, 0.67, 0.32, 1.38) forwards,
+        letra-glow 2s ease-in-out 0.6s infinite;
+    display: inline-block; /* Asegura que la animación funcione correctamente */
+    position: relative; /* Para posicionamiento avanzado */
 }
 
 .dark .dni-validator__result-letra {
@@ -390,6 +505,25 @@ a, button, input, textarea, select {
         transition: none !important;
         animation: none !important;
     }
+}
+
+/* Efecto de transición para el campo de entrada */
+@keyframes input-success {
+    0% {
+        border-color: var(--color-border);
+    }
+    50% {
+        border-color: var(--color-secondary);
+        box-shadow: 0 0 8px rgba(87, 197, 182, 0.4);
+    }
+    100% {
+        border-color: var(--color-border);
+    }
+}
+
+.dni-validator__input--success {
+    animation: input-success 1.5s ease forwards;
+    border-color: var(--color-secondary) !important;
 }
 
 /* Para usuarios que prefieren fuentes más grandes */
@@ -508,8 +642,5 @@ html {
     .dni-validator__button {
         width: auto;
         min-width: 100px;
-    }
-}
-        width: auto;
     }
 }
