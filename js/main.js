@@ -81,7 +81,13 @@ function procesarDNI() {
     
     // Validamos el formato
     if (!validarFormatoDNI(inputValue)) {
-        mostrarResultado('Por favor, introduce un número de DNI válido (hasta 8 dígitos)', '', true);
+        // Detectamos si es un dispositivo móvil para mostrar un mensaje más adecuado
+        const esMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const mensajeError = esMobile 
+            ? 'Introduce solo números (máximo 8)' 
+            : 'Por favor, introduce un número de DNI válido (hasta 8 dígitos)';
+        
+        mostrarResultado(mensajeError, '', true);
         return;
     }
     

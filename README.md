@@ -55,6 +55,17 @@ El proyecto incluye un sistema de cambio de tema con las siguientes característ
 - **Tema oscuro/claro**: Cambia entre temas con un clic en el botón dedicado
 - **Diseño responsive**: Se adapta a todos los tamaños de pantalla
 - **Transiciones suaves**: Transiciones fluidas al cambiar entre temas
+- **Optimizado para iPhone**: Siguiendo directrices de Apple Human Interface Guidelines
+
+## Optimizaciones para dispositivos iOS
+
+La aplicación ha sido optimizada para dispositivos iOS siguiendo las directrices oficiales de Apple:
+
+- **Áreas táctiles óptimas**: Todos los elementos interactivos tienen un tamaño mínimo de 44×44px
+- **Safe areas**: Respeto por el notch y home indicator en dispositivos como iPhone X y posteriores
+- **Prevención de zoom**: Tamaños de fuente adecuados para evitar el zoom automático en campos de entrada
+- **Gestos nativos**: Soporte para gestos de deslizamiento y navegación fluida
+- **Personalización de estado**: Optimización para la barra de estado y experiencia a pantalla completa
 
 ## Mejoras realizadas
 
@@ -64,6 +75,8 @@ El proyecto incluye un sistema de cambio de tema con las siguientes característ
 - [x] Optimización de dependencias del proyecto
 - [x] Destacado visual de la letra del DNI
 - [x] Mejoras de accesibilidad (atributos ARIA, etiquetas semánticas)
+- [x] Adaptación para dispositivos iOS siguiendo directrices de Apple HIG
+- [x] Optimización para diferentes tamaños de pantalla (iPhone SE hasta iPad Pro)
 
 ## Licencia
 

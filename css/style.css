@@ -362,6 +362,28 @@ body {
     }
 }
 
+/* Estilos de retroalimentación táctil para iOS */
+@keyframes touch-feedback {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+.dni-validator__button:active {
+    animation: touch-feedback 0.2s ease-in-out;
+    opacity: 0.9;
+}
+
+.theme-toggle:active {
+    animation: touch-feedback 0.2s ease-in-out;
+    opacity: 0.85;
+}
+
+/* Eliminar el resaltado azul al tocar elementos en iOS */
+a, button, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Accesibilidad y gestos */
 @media (prefers-reduced-motion: reduce) {
     * {
