@@ -1,6 +1,14 @@
-# CompletDNI - Validador de DNI español
+# CompletDNI - Validador de DNI e## Integración de Tailwind CSS y Modern Normalize
 
-Una aplicación web moderna que calcula automáticamente la letra del DNI español o verifica si un DNI completo es válido.
+Este proyecto utiliza una combinación de Tailwind CSS y Modern Normalize para garantizar un diseño moderno y una compatibilidad óptima:
+
+- **Modern Normalize**: Proporciona una base sólida y consistente para los estilos en todos los navegadores, incluidos los más antiguos. Se incluye a través de CDN para simplificar el desarrollo.
+
+- **Tailwind CSS**: Framework de utilidades que se incluye vía CDN para simplificar el desarrollo y la distribución. Las ventajas de usar Tailwind CSS incluyen:
+  - **Desarrollo más rápido**: Clases de utilidad que permiten construir diseños directamente en el HTML
+  - **Bundle size reducido**: Al usar CDN en producción, solo se carga lo necesario
+  - **Personalización**: Configuración de colores, tipografía y otros aspectos del diseño
+  - **Responsive design**: Clases adaptativas para diferentes tamaños de pantallaUna aplicación web moderna que calcula automáticamente la letra del DNI español o verifica si un DNI completo es válido.
 
 ## Características
 
@@ -14,6 +22,7 @@ Una aplicación web moderna que calcula automáticamente la letra del DNI españ
 
 - **HTML5**: Estructura semántica y accesible
 - **Tailwind CSS**: Framework de utilidades CSS para un diseño rápido y consistente
+- **Modern Normalize**: Normalización CSS moderna para compatibilidad con navegadores antiguos
 - **JavaScript**: Validación y cálculo de letras del DNI
 - **Enfoque en accesibilidad**: Atributos ARIA, navegación con teclado y contrastes adecuados
 
@@ -23,12 +32,14 @@ Una aplicación web moderna que calcula automáticamente la letra del DNI españ
 ├── index.html          # Documento HTML principal
 ├── js/
 │   └── main.js         # Lógica JavaScript para el validador
-├── img/
-│   └── logo.svg        # Logo del proyecto
-└── package.json        # Configuración de dependencias
+├── css/
+│   ├── reset.css       # Estilos de reseteo (complementario)
+│   └── style.css       # Estilos personalizados (complementario)
+├── package.json        # Configuración de dependencias
+└── node_modules/       # Dependencias instaladas (modern-normalize)
 ```
 
-## Integración de Tailwind CSS
+## Integración de Tailwind CSS y Modern Normalize
 
 Este proyecto utiliza Tailwind CSS a través de CDN para simplificar el desarrollo y la distribución. Las ventajas de usar Tailwind CSS incluyen:
 
