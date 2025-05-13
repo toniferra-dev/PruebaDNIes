@@ -106,6 +106,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px; /* Tamaño mínimo táctil según Apple */
+    min-height: 44px; /* Tamaño mínimo táctil según Apple */
+    -webkit-tap-highlight-color: transparent; /* Elimina el resaltado en iOS */
 }
 
 .theme-toggle:hover {
@@ -182,23 +185,6 @@ body {
     margin-bottom: var(--spacing-md);
 }
 
-@media (min-width: 640px) {
-    .dni-validator__input-group {
-        display: flex;
-        align-items: flex-end;
-        gap: var(--spacing-md);
-    }
-    
-    .dni-validator__input-wrapper {
-        flex-grow: 1;
-        margin-bottom: 0;
-    }
-    
-    .dni-validator__button {
-        width: auto;
-    }
-}
-
 .dni-validator__input-wrapper {
     margin-bottom: var(--spacing-md);
 }
@@ -223,6 +209,10 @@ body {
     color: var(--color-text);
     transition: border-color var(--transition-speed), box-shadow var(--transition-speed), 
                 background-color var(--transition-speed), color var(--transition-speed);
+    height: 44px; /* Altura mínima recomendada por Apple */
+    -webkit-appearance: none; /* Quita apariencia nativa en iOS */
+    appearance: none;
+    padding-left: 12px; /* Margen interior izquierdo recomendado por Apple */
 }
 
 .dni-validator__input:focus {
@@ -246,11 +236,23 @@ body {
     width: 100%;
     transition: background-color var(--transition-speed);
     font-weight: 500;
+    -webkit-appearance: none; /* Evita estilos por defecto en iOS */
+    appearance: none; /* Propiedad estándar */
+    min-height: 44px; /* Altura mínima para área táctil según Apple */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dni-validator__button:hover,
 .dni-validator__button:focus {
     background-color: var(--color-primary-dark);
+    outline: none; /* Elimina el borde al enfocar en iOS */
+}
+
+.dni-validator__button:active {
+    opacity: 0.9; /* Retroalimentación visual al presionar según Apple HIG */
+    transform: scale(0.98); /* Ligera reducción de escala al presionar */
 }
 
 .dark .dni-validator__button {
@@ -345,20 +347,147 @@ body {
     font-size: 0.9rem;
 }
 
+/* Ajustes para dispositivos con notch (iPhone X y posteriores) */
+@supports (padding: max(0px)) {
+    .header {
+        padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+        padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+        padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+    }
+    
+    .footer {
+        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+        padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+        padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+    }
+}
+
+/* Accesibilidad y gestos */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Para usuarios que prefieren fuentes más grandes */
+@media (prefers-reduced-transparency: reduce) {
+    .theme-toggle, 
+    .dni-validator__button,
+    .header {
+        opacity: 1 !important;
+        background-color: var(--color-primary) !important;
+    }
+}
+
+/* Para soporte de texto dinámico de iOS */
+html {
+    -webkit-text-size-adjust: 100%; /* Evita ajustes automáticos de texto */
+    text-size-adjust: 100%;
+}
+
+/* Soporte para gestos de deslizamiento de iOS */
+.dni-validator {
+    -webkit-overflow-scrolling: touch; /* Mejor desplazamiento en iOS */
+    touch-action: manipulation; /* Mejora respuesta táctil */
+}
+
+/* iOS específico */
+@supports (-webkit-touch-callout: none) {
+    /* Mejoras específicas para Safari en iOS */
+    body {
+        -webkit-tap-highlight-color: transparent; /* Elimina el resaltado azul en toques */
+    }
+    
+    /* Evitar zoom en campos de entrada */
+    .dni-validator__input {
+        font-size: 16px; /* Tamaño mínimo para evitar zoom */
+    }
+    
+    /* Mejora para interactuar con elementos pequeños */
+    .theme-toggle {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Ajuste para notch y home indicator */
+    .footer {
+        padding-bottom: calc(var(--spacing-md) + env(safe-area-inset-bottom));
+        margin-bottom: env(safe-area-inset-bottom);
+    }
+}
+
 /* Responsive */
-@media (min-width: 768px) {
-    .dni-validator__input-group {
-        display: flex;
-        align-items: flex-end;
-        gap: var(--spacing-sm);
+/* iPhone SE / Smartphone pequeño */
+@media (max-width: 374px) {
+    .dni-validator {
+        padding: var(--spacing-sm);
+        margin-left: var(--spacing-xs);
+        margin-right: var(--spacing-xs);
+    }
+    
+    .dni-validator__title {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .dni-validator__label {
+        font-size: 0.9rem;
     }
     
     .dni-validator__input {
-        flex: 1;
+        height: 44px; /* Apple's minimum tap target size */
+        font-size: 16px; /* Prevents zoom on focus in iOS */
+    }
+    
+    .dni-validator__button {
+        height: 44px;
+        width: 100%;
+        margin-top: var(--spacing-xs);
+        font-size: 0.95rem;
+    }
+    
+    .dni-validator__result-letra {
+        font-size: 2.5rem;
+    }
+}
+
+/* iPhone 6-8, X, 11 Pro / Smartphone estándar */
+@media (min-width: 375px) and (max-width: 639px) {
+    .dni-validator {
+        padding: var(--spacing-md);
+    }
+    
+    .dni-validator__input {
+        height: 44px; /* Apple's minimum tap target size */
+        font-size: 16px; /* Prevents zoom on focus in iOS */
+    }
+    
+    .dni-validator__button {
+        height: 44px;
+        width: 100%;
+        margin-top: var(--spacing-xs);
+    }
+}
+
+/* Tablets y escritorio */
+@media (min-width: 640px) {
+    .dni-validator__input-group {
+        display: flex;
+        align-items: flex-end;
+        gap: var(--spacing-md);
+    }
+    
+    .dni-validator__input-wrapper {
+        flex-grow: 1;
         margin-bottom: 0;
     }
     
     .dni-validator__button {
+        width: auto;
+        min-width: 100px;
+    }
+}
         width: auto;
     }
 }
