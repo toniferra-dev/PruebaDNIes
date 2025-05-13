@@ -1,0 +1,35 @@
+# Archivos y carpetas de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Carpetas de dependencias
+node_modules/
+vendor/
+
+# Archivos de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Carpetas de caché y build
+.cache/
+dist/
+build/
+public/build/
+
+# Editor/IDE específicos
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos específicos del proyecto que no quieras versionar
+# (añade más si es necesario)

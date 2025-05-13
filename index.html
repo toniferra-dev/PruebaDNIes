@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Validador de DNI español con cálculo de letra automático">
+    <meta name="author" content="Toni Ferrà">
+    <meta name="keywords" content="DNI, validador, documento nacional identidad, letra DNI, calcular letra">
+
+    <!-- Título de la página -->
+    <title>CompletDNI - Validador de DNI español</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.ejemplo.es/completdni">
+
+    <!-- Redes sociales - Open Graph -->
+    <meta property="og:title" content="CompletDNI - Validador de DNI español">
+    <meta property="og:description" content="Herramienta para validar y completar DNIs españoles automáticamente">
+    <meta property="og:image" content="https://www.ejemplo.es/img/completdni-og.jpg">
+    <meta property="og:url" content="https://www.ejemplo.es/completdni">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="CompletDNI">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CompletDNI - Validador de DNI español">
+    <meta name="twitter:description" content="Calcula y valida la letra de tu DNI español al instante">
+    <meta name="twitter:image" content="https://www.ejemplo.es/img/completdni-twitter.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Script para personalizar Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#0056b3',
+                            dark: '#003d82',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-800 font-sans">
+    <!-- Cabecera de la página -->
+    <header class="bg-primary text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <a href="/" class="flex items-center no-underline text-white">
+                <img class="h-10 mr-3" src="img/logo.svg" alt="Logo CompletDNI">
+                <h1 class="text-2xl font-bold m-0">CompletDNI</h1>
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+            <section class="bg-white rounded-lg shadow-sm p-6 max-w-2xl mx-auto" aria-labelledby="validator-title">
+                <!-- Título de la sección -->
+                <h2 id="validator-title" class="text-xl font-bold text-primary text-center mb-6">Validador de DNI español</h2>
+                
+                <!-- Formulario para el DNI -->
+                <form class="mb-6" aria-describedby="dni-instructions">
+                    <div class="mb-4 sm:flex sm:items-end sm:gap-4">
+                        <div class="flex-grow mb-4 sm:mb-0">
+                            <label for="dni-input" class="block font-semibold mb-2">Introduce tu número de DNI:</label>
+                            <input 
+                                type="text" 
+                                id="dni-input" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition" 
+                                placeholder="Ej. 12345678" 
+                                maxlength="8" 
+                                pattern="[0-9]{1,8}"
+                                inputmode="numeric"
+                                aria-required="true"
+                                required
+                            >
+                        </div>
+                        <button 
+                            type="submit" 
+                            class="w-full sm:w-auto px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded transition-colors duration-200 font-medium"
+                            aria-label="Validar DNI">
+                            Validar
+                        </button>
+                    </div>
+                    
+                    <!-- Resultado de la validación -->
+                    <div class="text-center min-h-[50px] mt-6" aria-live="polite">
+                        <p id="dni-result" class="text-xl font-bold text-primary"></p>
+                    </div>
+                </form>
+                
+                <!-- Información adicional -->
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <p id="dni-instructions" class="text-sm text-gray-600 text-center">
+                        Introduce los números de tu DNI y te calcularemos automáticamente la letra correspondiente 
+                        o verificaremos si el DNI completo es válido.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-primary text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 CompletDNI. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
