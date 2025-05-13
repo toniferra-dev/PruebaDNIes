@@ -51,26 +51,23 @@ function mostrarResultado(numeros, letra, esError = false) {
     if (esError) {
         // Si es un error, mostramos el mensaje completo
         elements.resultText.textContent = numeros;
-        elements.resultText.classList.remove('text-primary');
-        elements.resultText.classList.remove('text-secondary');
-        elements.resultText.classList.add('text-red-600');
+        elements.resultText.className = 'dni-validator__result-text dni-validator__result-error';
         elements.resultContainer.setAttribute('aria-label', 'Error en la validación');
     } else {
         // Si es un DNI válido, creamos elementos separados para números y letra
         const numerosSpan = document.createElement('span');
         numerosSpan.textContent = numeros;
-        numerosSpan.className = 'text-primary dark:text-secondary';
+        numerosSpan.className = 'dni-validator__result-numero';
         
         const letraSpan = document.createElement('span');
         letraSpan.textContent = letra;
-        letraSpan.className = 'text-primary dark:text-secondary text-3xl font-bold ml-1';
+        letraSpan.className = 'dni-validator__result-letra';
         
         // Añadimos los elementos al contenedor
         elements.resultText.appendChild(numerosSpan);
         elements.resultText.appendChild(letraSpan);
         
-        // Actualizamos las clases del contenedor
-        elements.resultText.classList.remove('text-red-600');
+        // Actualizamos el atributo aria-label
         elements.resultContainer.setAttribute('aria-label', 'DNI completo válido');
     }
 }
