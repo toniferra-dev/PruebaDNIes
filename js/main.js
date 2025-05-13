@@ -40,22 +40,37 @@ function validarFormatoDNI(inputValue) {
 
 /**
  * Muestra un mensaje de resultado
- * @param {string} mensaje - Mensaje a mostrar
+ * @param {string} numeros - Números del DNI
+ * @param {string} letra - Letra del DNI (o mensaje de error completo)
  * @param {boolean} esError - Indica si es un mensaje de error
  */
-function mostrarResultado(mensaje, esError = false) {
-    elements.resultText.textContent = mensaje;
+function mostrarResultado(numeros, letra, esError = false) {
+    // Limpiamos el contenido anterior
+    elements.resultText.innerHTML = '';
     
     if (esError) {
+        // Si es un error, mostramos el mensaje completo
+        elements.resultText.textContent = numeros;
         elements.resultText.classList.remove('text-primary');
         elements.resultText.classList.remove('text-secondary');
         elements.resultText.classList.add('text-red-600');
         elements.resultContainer.setAttribute('aria-label', 'Error en la validación');
     } else {
+        // Si es un DNI válido, creamos elementos separados para números y letra
+        const numerosSpan = document.createElement('span');
+        numerosSpan.textContent = numeros;
+        numerosSpan.className = 'text-primary dark:text-secondary';
+        
+        const letraSpan = document.createElement('span');
+        letraSpan.textContent = letra;
+        letraSpan.className = 'text-primary dark:text-secondary text-3xl font-bold ml-1';
+        
+        // Añadimos los elementos al contenedor
+        elements.resultText.appendChild(numerosSpan);
+        elements.resultText.appendChild(letraSpan);
+        
+        // Actualizamos las clases del contenedor
         elements.resultText.classList.remove('text-red-600');
-        elements.resultText.classList.remove('text-secondary');
-        elements.resultText.classList.add('text-primary');
-        elements.resultText.classList.add('dark:text-secondary');
         elements.resultContainer.setAttribute('aria-label', 'DNI completo válido');
     }
 }
@@ -69,7 +84,7 @@ function procesarDNI() {
     
     // Validamos el formato
     if (!validarFormatoDNI(inputValue)) {
-        mostrarResultado('Por favor, introduce un número de DNI válido (hasta 8 dígitos)', true);
+        mostrarResultado('Por favor, introduce un número de DNI válido (hasta 8 dígitos)', '', true);
         return;
     }
     
@@ -82,8 +97,8 @@ function procesarDNI() {
     // Formateamos el DNI completo (con ceros a la izquierda si es necesario)
     const numeroFormateado = inputValue.padStart(8, '0');
     
-    // Mostramos el resultado
-    mostrarResultado(`${numeroFormateado}${letra}`);
+    // Mostramos el resultado (pasamos números y letra por separado)
+    mostrarResultado(numeroFormateado, letra);
 }
 
 // Registramos los event listeners cuando el DOM está cargado
