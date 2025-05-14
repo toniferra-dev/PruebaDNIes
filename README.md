@@ -10,26 +10,37 @@ Una aplicación web moderna que calcula automáticamente la letra del DNI españ
 - ✅ Modo oscuro/claro con detección automática de preferencias del usuario
 - ✅ Interfaz accesible con soporte para lectores de pantalla
 - ✅ Funcionalidad optimizada para una experiencia de usuario fluida
+- ✅ Arquitectura modular JavaScript ES6 para mejor mantenibilidad
 
 ## Tecnologías utilizadas
 
 - **HTML5**: Estructura semántica y accesible
 - **CSS3**: Estilos personalizados y modernos con variables CSS
 - **Modern Normalize**: Normalización CSS moderna para compatibilidad con navegadores antiguos
-- **JavaScript**: Validación, cálculo de letras del DNI y gestión del tema oscuro/claro
+- **JavaScript ES6+**: Sistema modular con imports/exports para mejor organización
+- **Módulos ES6**: Separación de responsabilidades en módulos independientes
 - **Enfoque en accesibilidad**: Atributos ARIA, navegación con teclado y contrastes adecuados
 
 ## Estructura del proyecto
 
-```
-├── index.html          # Documento HTML principal
+```bash
+├── index.html                # Documento HTML principal
 ├── js/
-│   └── main.js         # Lógica JavaScript para el validador y tema
+│   ├── main.js               # Punto de entrada JavaScript
+│   ├── modules/              # Módulos específicos de la aplicación
+│   │   ├── accessibility.js  # Funcionalidades de accesibilidad
+│   │   ├── confetti.js       # Efecto visual de celebración
+│   │   ├── dni-validator.js  # Lógica del validador de DNI
+│   │   ├── theme-manager.js  # Gestión del tema claro/oscuro
+│   │   └── ui-handler.js     # Manejo de la interfaz de usuario
+│   └── utils/
+│       └── dom-utils.js      # Utilidades para manipulación del DOM
 ├── css/
-│   ├── reset.css       # Estilos de reseteo (complementario)
-│   └── style.css       # Estilos personalizados con soporte de tema oscuro
-├── package.json        # Configuración de dependencias
-└── node_modules/       # Dependencias instaladas (modern-normalize)
+│   ├── confeti.css           # Estilos para el efecto de confeti
+│   ├── reset.css             # Estilos de reseteo (complementario)
+│   └── style.css             # Estilos personalizados con soporte de tema oscuro
+├── package.json              # Configuración de dependencias
+└── site.webmanifest          # Configuración para PWA
 ```
 
 ## Sistema de temas claro/oscuro
@@ -40,6 +51,15 @@ El proyecto incluye un sistema de cambio de tema con las siguientes característ
 - **Toggle manual**: Permite cambiar manualmente entre tema claro y oscuro
 - **Persistencia**: Guarda la selección del usuario en localStorage
 - **Variables CSS**: Utiliza variables CSS para facilitar la implementación del tema
+
+## Arquitectura JavaScript
+
+La aplicación utiliza una arquitectura modular basada en ES6:
+
+- **Separación de responsabilidades**: Cada módulo tiene una única responsabilidad
+- **Módulos independientes**: Las funcionalidades están separadas en módulos específicos
+- **Mejor mantenibilidad**: Facilita la actualización y mejora del código
+- **Código reutilizable**: Funciones y componentes que pueden ser reutilizados
 
 ## Uso
 
@@ -77,6 +97,8 @@ La aplicación ha sido optimizada para dispositivos iOS siguiendo las directrice
 - [x] Mejoras de accesibilidad (atributos ARIA, etiquetas semánticas)
 - [x] Adaptación para dispositivos iOS siguiendo directrices de Apple HIG
 - [x] Optimización para diferentes tamaños de pantalla (iPhone SE hasta iPad Pro)
+- [x] Modularización del código JavaScript en módulos ES6
+- [x] Separación de responsabilidades en componentes independientes
 
 ## Licencia
 
