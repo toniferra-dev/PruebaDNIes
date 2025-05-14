@@ -99,6 +99,7 @@ La aplicación ha sido optimizada para dispositivos iOS siguiendo las directrice
 - [x] Optimización para diferentes tamaños de pantalla (iPhone SE hasta iPad Pro)
 - [x] Modularización del código JavaScript en módulos ES6
 - [x] Separación de responsabilidades en componentes independientes
+- [x] Mejora del efecto visual de confeti con colores más vibrantes y animaciones mejoradas
 
 ## Licencia
 

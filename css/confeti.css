@@ -12,25 +12,49 @@
 
 .confeti {
     position: absolute;
-    top: -10px;
-    animation: confeti-fall 3s ease-in-out forwards;
+    top: -20px;
+    animation: confeti-fall 4s ease-in-out forwards;
+    transform-origin: center center;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.2);
+}
+
+/* Diferentes formas para el confeti */
+.confeti-rectangulo {
+    border-radius: 2px;
+}
+
+.confeti-circulo {
+    border-radius: 50%;
+}
+
+.confeti-triangulo {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(0deg);
 }
 
 @keyframes confeti-fall {
     0% {
-        transform: translateY(-10px) rotate(0deg) scale(0.7);
+        transform: translateY(-20px) rotate(0deg) scale(0.8) rotateX(0deg);
     }
     10% {
-        transform: translateY(10%) rotate(45deg) scale(1);
+        transform: translateY(10%) rotate(90deg) scale(1.2) rotateX(45deg);
     }
-    35% {
-        transform: translateY(40%) rotate(90deg) scale(0.9);
+    25% {
+        transform: translateY(30%) rotate(180deg) scale(1) rotateX(90deg);
+    }
+    40% {
+        transform: translateY(50%) rotate(270deg) scale(1.1) rotateX(135deg);
     }
     65% {
-        transform: translateY(70%) rotate(135deg) scale(1);
+        transform: translateY(70%) rotate(315deg) scale(1) rotateX(180deg);
+    }
+    85% {
+        transform: translateY(90%) rotate(360deg) scale(0.9) rotateX(225deg);
+        opacity: 0.7;
     }
     100% {
-        transform: translateY(100vh) rotate(180deg) scale(0.5);
+        transform: translateY(100vh) rotate(420deg) scale(0.5) rotateX(270deg);
         opacity: 0;
     }
 }
@@ -40,4 +64,29 @@
     .confeti-container {
         display: none;
     }
+}
+
+/* Efectos adicionales para hacer el confeti más visible */
+.confeti {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+}
+
+.confeti-circulo {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.confeti-rectangulo {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animación de brillo */
+@keyframes brillo {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.confeti:nth-child(3n) {
+    animation: confeti-fall 4s ease-in-out forwards, brillo 1s ease-in-out infinite;
 }
