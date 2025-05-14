@@ -16,12 +16,16 @@ export function setupThemeToggle(themeToggle) {
     // Si hay un tema guardado, lo aplicamos
     if (savedTheme) {
         document.documentElement.setAttribute('data-theme', savedTheme);
+        // Actualizamos la apariencia del botón
+        updateToggleAppearance(savedTheme === 'dark');
     } else {
         // Si no hay tema guardado, detectamos la preferencia del sistema
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
         if (prefersDarkScheme) {
             document.documentElement.setAttribute('data-theme', 'dark');
+            // Actualizamos la apariencia del botón
+            updateToggleAppearance(true);
         }
     }
     
@@ -30,9 +34,9 @@ export function setupThemeToggle(themeToggle) {
         // Obtenemos el tema actual
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         // Cambiamos al tema opuesto
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        const isDark = currentTheme !== 'dark';
         
-        toggleTheme(newTheme === 'dark');
+        toggleTheme(isDark);
     });
 }
 
@@ -46,11 +50,35 @@ function toggleTheme(isDark) {
     // Cambiamos el atributo data-theme del documento
     document.documentElement.setAttribute('data-theme', theme);
     
+    // Actualizamos la apariencia del botón
+    updateToggleAppearance(isDark);
+    
     // Guardamos la preferencia en localStorage
     localStorage.setItem('theme', theme);
     
     // Anunciamos el cambio para lectores de pantalla
     announceThemeChange(theme);
+}
+
+/**
+ * Actualiza la apariencia del botón según el tema actual
+ * @param {boolean} isDark - Indica si el tema actual es oscuro
+ */
+function updateToggleAppearance(isDark) {
+    const sunIcon = document.querySelector('.theme-toggle__icon--sun');
+    const moonIcon = document.querySelector('.theme-toggle__icon--moon');
+    
+    if (sunIcon && moonIcon) {
+        if (isDark) {
+            // Si es tema oscuro, mostramos el icono del sol
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        } else {
+            // Si es tema claro, mostramos el icono de la luna
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+    }
 }
 
 /**
